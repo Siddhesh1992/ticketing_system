@@ -51,8 +51,9 @@ const Login = () => {
       axios
         .post(`auth/login`, loginDetState)
         .then((response) => {
+          window.localStorage.setItem('auth', response.data);
           dispatch({ type: 'auth', payload: response.data });
-          navigate('/home', {replace: true});
+          navigate('/home', { replace: true });
         })
         .catch((error) => {
           const { response } = error;
@@ -84,56 +85,56 @@ const Login = () => {
   return (
     <Fragment>
       <main>
-        <div className='row'>
-          <div className='col s12 m4 offset-m4'>
-            <div className='card'>
-              <div className='card-content'>
-                <span className='card-title center-align indigo-text'>
+        <div className="row">
+          <div className="col s12 m4 offset-m4">
+            <div className="card">
+              <div className="card-content">
+                <span className="card-title center-align indigo-text">
                   SIGN IN
                 </span>
-                <form onSubmit={handleSubmit} method='post'>
-                  <div className='row'>
-                    <div className='input-field col s12'>
+                <form onSubmit={handleSubmit} method="post">
+                  <div className="row">
+                    <div className="input-field col s12">
                       <input
-                        className='validate'
-                        type='text'
-                        name='username'
-                        id='username'
+                        className="validate"
+                        type="text"
+                        name="username"
+                        id="username"
                         value={username}
                         onChange={handleChange}
                       />
-                      <label htmlFor='username'>Enter your username</label>
-                      <span className='error'>{errors.username}</span>
+                      <label htmlFor="username">Enter your username</label>
+                      <span className="error">{errors.username}</span>
                     </div>
                   </div>
 
-                  <div className='row'>
-                    <div className='input-field col s12'>
+                  <div className="row">
+                    <div className="input-field col s12">
                       <input
-                        className='validate'
-                        type='password'
-                        name='password'
-                        id='password'
+                        className="validate"
+                        type="password"
+                        name="password"
+                        id="password"
                         value={password}
                         onChange={handleChange}
                       />
-                      <label htmlFor='password'>Enter your password</label>
-                      <span className='error'>{errors.password}</span>
+                      <label htmlFor="password">Enter your password</label>
+                      <span className="error">{errors.password}</span>
                     </div>
                   </div>
 
                   <br />
                   <center>
-                    <div className='row'>
+                    <div className="row">
                       <button
-                        type='submit'
-                        name='btn_login'
-                        className='col s12 btn btn-large waves-effect indigo'
+                        type="submit"
+                        name="btn_login"
+                        className="col s12 btn btn-large waves-effect indigo"
                       >
                         Login
                       </button>
                     </div>
-                    <Link className='indigo-text center-allign' to='/sign-up'>
+                    <Link className="indigo-text center-allign" to="/sign-up">
                       Create account
                     </Link>
                   </center>

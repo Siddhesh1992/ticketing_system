@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useCallback, useMemo, useReducer } from 'react';
 import {
   Routes,
   Route,
@@ -15,14 +15,18 @@ import Home from './components/Home';
 import Ticket from './components/Ticket';
 
 function App() {
-  const [state, dispatch] = useReducer(authReducer, { auth: null });
-
+  const [state, dispatch] = useReducer(authReducer, { auth: null, user: null });
   const RequireAuth = ({ children }) => {
-    let location = useLocation();
-    if (!state.auth) {
-      return <Navigate to="/" state={{ from: location }} replace />;
-    }
+    debugger;
+    const data = window.localStorage.getItem('auth');
 
+    if (!state.auth && !data) {
+      return <Navigate to="/" replace />;
+    } else if (data && !state.auth) {
+      dispatch({ type: 'auth', payload: data });
+      return <Navigate to="/home" replace />;
+    }
+    // console.log(location);
     return children;
   };
 

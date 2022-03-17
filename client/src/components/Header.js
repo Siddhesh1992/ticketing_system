@@ -30,6 +30,7 @@ const Header = () => {
                 <Link
                   to="#"
                   onClick={() => {
+                    window.localStorage.removeItem('auth');
                     dispatch({ type: 'auth', payload: null });
                     navigate('/', { replace: true });
                   }}

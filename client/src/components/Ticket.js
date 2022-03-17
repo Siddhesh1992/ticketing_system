@@ -39,6 +39,16 @@ const Ticket = () => {
         })
         .then(({ data }) =>
           setLoginDetState((prev) => {
+            dispatch({
+              type: 'user',
+              payload: {
+                ...prev,
+                title: data.title,
+                status: data.status,
+                description: data.description,
+                user: data.user.id,
+              },
+            });
             return {
               ...prev,
               title: data.title,

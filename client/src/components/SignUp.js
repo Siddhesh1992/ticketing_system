@@ -56,6 +56,7 @@ const SignUp = () => {
         .post(`auth/sign-up`, loginDetState)
         .then((response) => {
           const { data, status, message } = response.data;
+          window.localStorage.setItem('auth', data)
           dispatch({ type: 'auth', payload: data });
           if (response.status === 201) {
             swal({

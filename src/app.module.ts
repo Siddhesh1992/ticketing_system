@@ -30,7 +30,7 @@ console.log(join(__dirname, '..', 'client'));
             password: 'root',
             database: 'ticketing_system',
             autoLoadEntities: true,
-            synchronize: false, // true only for devlopment
+            synchronize: true, // true only for devlopment
           },
     ),
     ServeStaticModule.forRoot({
